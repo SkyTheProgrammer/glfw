@@ -44,7 +44,7 @@ project "GLFW"
             defines
             {
                 "_GLFW_WIN32",
-                "_CRT_SECRUE_NO_WARNINGS"
+                "_CRT_SECURE_NO_WARNINGS"
             }
 
         filter "configurations:Debug"
