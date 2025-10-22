@@ -1,9 +1,10 @@
 project "GLFW"
     kind "StaticLib"
     language "C"
+    warnings "off"
 
-        targetdir ("bin/" .. outputdir .. "/%(prj.name)")
-        objdir ("bin-int/" .. outputdir .. "/%(prj.name)")
+        targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+        objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
         files
         {
@@ -50,6 +51,12 @@ project "GLFW"
         filter "configurations:Debug"
             runtime "Debug"
             symbols "on"
+
+        filter { "system:windows", "configurations:Debug-AS" }	
+            runtime "Debug"
+            symbols "on"
+            sanitize { "Address" }
+            flags { "NoRuntimeChecks", "NoIncrementalLink" }
             
         filter "configurations:Release"
             runtime "Release"
